@@ -6,17 +6,17 @@
 <p>MySQL Script</p>
 <img src="/images/mysql_script.png?raw=true">
 <p>CSV DATA</p>
-<img src="/images/excsv_dataample.png?raw=true">
+<img src="/images/csv_data.png?raw=true">
 <p>BaseDAO.py</p>
 <img src="/images/base_dao.png?raw=true">
 </p>
 
 ## Requirements
-[mysql.connector](https://pypi.org/project/mysql-connector-python/)
+[mysql.connector](https://pypi.org/project/mysql-connector-python/)<br>
 [csv](https://docs.python.org/3/library/csv.html)
 
 ## Built With
-[Python 3.11.X](https://www.python.org/)
+[Python 3.11.X](https://www.python.org/)<br>
 [MySQL](https://www.mysql.com/)
 
 
