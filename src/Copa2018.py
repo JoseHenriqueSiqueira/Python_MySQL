@@ -12,6 +12,10 @@ class CopaDoMundo2018(BaseDAO):
                 'by': str,
                 'params': list
             },
+            'delete_values': {
+                'by': str,
+                'params': list
+            },
             'insert_values': {
                 'data': list
             },
@@ -37,7 +41,7 @@ class CopaDoMundo2018(BaseDAO):
             # Calling the parent method _execDML to execute the SQL stament and insert the data into the database
             super()._execDML('INSERT INTO fase_de_grupos VALUES (%s, %s, %s, %s)', value)
 
-    def update_values(self, by:str, params:list):
+    def update_values(self, by:str, params:list) -> None:
         '''
             Method responsible for updating values in the database.
             :param by: str indicating the WHERE clause to be used
@@ -48,6 +52,19 @@ class CopaDoMundo2018(BaseDAO):
         self._params_type('update_values', {'by': by, 'params': params})
         # Calling the parent method _execDML to execute the SQL stament and update values into the database
         super()._execDML(f"UPDATE fase_de_grupos SET grupo = %s, posicao = %s, nome = %s, pontos = %s WHERE {by} = %s", params)
+
+    def delete_values(self, by:str, params:list) -> None:
+        '''
+            Method responsible for delete values in the database.
+            :param by: str indicating the WHERE clause to be used
+            :param params: list of values to be deleted
+            :return: None
+        '''
+        # Check parameter types
+        self._params_type('delete_values', {'by': by, 'params': params})
+        for value in params:
+            # Calling the parent method _execDML to execute the SQL stament and delete values from the database
+            super()._execDML(f"DELETE FROM fase_de_grupos WHERE {by} = %s", value)
 
     def get_values_by(self, by:str, value:str) -> list[tuple]:
         '''
@@ -73,4 +90,3 @@ class CopaDoMundo2018(BaseDAO):
             for row in reader:
                 data.append((row['Grupo'], row['Posição'], row['Nome'], row['Pontos']))
             return data
-        

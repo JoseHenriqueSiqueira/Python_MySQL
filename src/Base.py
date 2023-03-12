@@ -33,8 +33,8 @@ class BaseDAO():
         cursor = cnx.cursor()
         try:
             # If there is only one parameter, it needs to be passed as a tuple.
-            if len(params) == 1:
-                cursor.execute(sql, (params[0],))
+            if type(params) == str:
+                cursor.execute(sql, (params,))
             else:
                 cursor.execute(sql, params)
         except mysql.connector.Error as err:
