@@ -32,16 +32,18 @@ class BaseDAO():
         cnx = self._connection()
         cursor = cnx.cursor()
         try:
+            cnx.start_transaction()  # Start a transaction
             # If there is only one parameter, it needs to be passed as a tuple.
             if type(params) == str:
                 cursor.execute(sql, (params,))
             else:
                 cursor.execute(sql, params)
+            cnx.commit() # Confirm transaction
         except mysql.connector.Error as err:
+            cnx.rollback() # Cancel transaction
             print(err)
         finally:
-            # Commit the changes to the database, close the cursor, and close the connection.
-            cnx.commit()
+            # Close the cursor, and close the connection.
             cursor.close()
             cnx.close()
     
@@ -66,8 +68,7 @@ class BaseDAO():
         except mysql.connector.Error as err:
             print(err)
         finally:
-            # Commit the changes to the database, close the cursor, close the connection and return data.
-            cnx.commit()
+            # Close the cursor, close the connection and return data.
             cursor.close()
             cnx.close()
             return data
