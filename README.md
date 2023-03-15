@@ -13,7 +13,9 @@
 
 ## Requirements
 [mysql.connector](https://pypi.org/project/mysql-connector-python/)<br>
-[csv](https://docs.python.org/3/library/csv.html)
+[csv](https://docs.python.org/3/library/csv.html)<br>
+[numpy](https://numpy.org/)<br>
+[faker](https://pypi.org/project/Faker/)
 
 ## Built With
 [Python 3.11.X](https://www.python.org/)<br>

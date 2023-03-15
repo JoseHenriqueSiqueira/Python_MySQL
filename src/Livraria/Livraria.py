@@ -1,7 +1,9 @@
+import sys
+sys.path.append(r'./src')
 from Base import BaseDAO
 import csv
 
-class CopaDoMundo2018(BaseDAO):        
+class tbl_Leitores(BaseDAO):        
 
     def _params_type(self, method, params):
         '''
@@ -39,7 +41,7 @@ class CopaDoMundo2018(BaseDAO):
         self._params_type('insert_values', {'data': data})
         for value in data:
             # Calling the parent method _execDML to execute the SQL stament and insert the data into the database
-            super()._execDML('INSERT INTO fase_de_grupos VALUES (%s, %s, %s, %s)', value)
+            super()._execDML('INSERT INTO tbl_Leitores (nome, cpf, telefone, cep, numero) VALUES ( %s, %s, %s, %s,%s)', value)
 
     def update_values(self, by:str, params:list) -> None:
         '''
@@ -51,7 +53,7 @@ class CopaDoMundo2018(BaseDAO):
         # Check parameter types
         self._params_type('update_values', {'by': by, 'params': params})
         # Calling the parent method _execDML to execute the SQL stament and update values into the database
-        super()._execDML(f"UPDATE fase_de_grupos SET grupo = %s, posicao = %s, nome = %s, pontos = %s WHERE {by} = %s", params)
+        super()._execDML(f"UPDATE tbl_Leitores SET nome = %s, cpf = %s, telefone = %s, cep = %s, numero = %s WHERE {by} = %s", params)
 
     def delete_values(self, by:str, params:list) -> None:
         '''
@@ -64,29 +66,21 @@ class CopaDoMundo2018(BaseDAO):
         self._params_type('delete_values', {'by': by, 'params': params})
         for value in params:
             # Calling the parent method _execDML to execute the SQL stament and delete values from the database
-            super()._execDML(f"DELETE FROM fase_de_grupos WHERE {by} = %s", value)
+            super()._execDML(f"DELETE FROM tbl_Leitores WHERE {by} = %s", value)
 
-    def get_values_by(self, by:str, value:str) -> list[tuple]:
-        '''
-            Method responsible for retrieving data from the database based on a specific field value.
-            :param by: the field to search for.
-            :param value: the value to search for in the field.
-            :return: a list of tuples containing the query results.
-        '''
-        # Check parameter types
-        self._params_type('get_values_by', {'by': by, 'value': value})
-        # Calling the parent method _execQUERY to execute the SQL query
-        return super()._execQUERY(f"SELECT * FROM fase_de_grupos WHERE {by} = %s", [value])
-        
-    def get_csv_values(self) -> list[tuple]:
+    def get_cvs_data(self, table_path:str = r'src/Livraria/DadosCSV/Leitores_Dados.csv') -> list[tuple]:
         '''
             Method responsible for getting values from a CSV file.
             Returns list of tuples.
             :return: list[tuple]
         '''
-        with open (r'src/Dados_Copa2018.csv','r', encoding = 'utf-8') as file:
+        with open (table_path,'r', encoding = 'utf-8') as file:
             data = []
             reader = csv.DictReader(file)
             for row in reader:
-                data.append((row['Grupo'], row['Posição'], row['Nome'], row['Pontos']))
+                data.append((row['NOME'], row['CPF'], row['TELEFONE'], row['CEP'], row['NUMERO']))
             return data
+
+leitores = tbl_Leitores()
+data = leitores.get_cvs_data()
+leitores.insert_values(data)
