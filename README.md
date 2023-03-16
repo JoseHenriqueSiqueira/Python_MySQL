@@ -3,17 +3,17 @@ Este repositório demonstra como conectar o MySQL com o Python de forma segura e
 
 ## Images
 ### BaseDAO.py
-[BaseDAO](/src/Base.py)
+[BaseDAO](/src/Base.py)<br>
 <img src="/images/base.png?raw=true">
 
 ### DB_LIVRARIA
-[Livraria_ScriptSQL](/src/Livraria/db_livraria_ScriptSQL.sql)
+[Livraria_ScriptSQL](/src/Livraria/db_livraria_ScriptSQL.sql)><br>
 <img src="/images/livraria_sql.png?raw=true">
 
-[Leitores_CSV](/src/Livraria/DadosCSV/Leitores.csv)
+[Leitores_CSV](/src/Livraria/DadosCSV/Leitores.csv)<br>
 <img src="/images/livraria_leitores_csv.png?raw=true">
 
-[Livros_CSV](/src/Livraria/DadosCSV/Livros.csv)
+[Livros_CSV](/src/Livraria/DadosCSV/Livros.csv)<br>
 <img src="/images/livraria_livros_csv.png?raw=true">
 
 ### DB_COPA2018
