@@ -159,7 +159,41 @@ class Gerar_Dados():
         editoras_aleatorias = ["Editora_" + str(num) for num in numeros_aleatorios]
         return editoras_aleatorias
 
+    def _gerar_rg_aleatorios(self, quantidade:int = 1) -> list:
+        rgs = set()
+        digitos_base = np.arange(10)
+        while len(rgs) < quantidade:
+            np.random.shuffle(digitos_base)
+            digitos = digitos_base[:8]
+            cpf_string = ''.join(map(str, digitos))
+            rgs.add(cpf_string)
+        rgs_formatados = [rg[:2] + '.' + rg[2:5] + '.' + rg[5:8]for rg in rgs]
+        return rgs_formatados
+
+    def _gerar_senhas_aleatorias(self, quantidade: int = 1) -> list:
+        chars = list('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+        senhas = set()
+        while len(senhas) < quantidade:
+            password_length = np.random.randint(8, 21)
+            password = ''.join(np.random.choice(chars, password_length))
+            senhas.add(password)
+        return list(senhas)
+
 class Gerar_CSV(Gerar_Dados):
+
+    def tbl_gerentes(self, quantidade:int = 1) -> None:
+        nomes_aleatorios = self._gerar_nomes_aleatorios(quantidade)
+        cpfs_aleatorios = self._gerar_cpfs_aleatorios(quantidade)
+        rgs_aleatorios = self._gerar_rg_aleatorios(quantidade)
+        senhas_aleatorias = self._gerar_senhas_aleatorias(quantidade)
+        dados = list()
+        for nome, cpf, rg, senha in zip(nomes_aleatorios, cpfs_aleatorios, rgs_aleatorios, senhas_aleatorias):
+            dados.append((nome, cpf, rg, senha))
+        with open('src/Livraria/DadosCSV/Gerentes.csv', 'w', newline='', encoding='utf-8') as file:
+            leitores = csv.writer(file)
+            leitores.writerow(['NOME','CPF','RG','SENHA'])
+            for dado in dados:
+                leitores.writerows([dado])
 
     def tbl_leitores(self, quantidade:int = 1) -> None:
         nomes_aleatorios = self._gerar_nomes_aleatorios(quantidade)
@@ -190,7 +224,8 @@ class Gerar_CSV(Gerar_Dados):
             for dado in dados:
                 leitores.writerows([dado])
 
-if __name__ == "__main__":
-    csv = Gerar_CSV()
-    csv.tbl_leitores(1000)
-    csv.tbl_livros(500)
+
+cvs = Gerar_CSV()
+cvs.tbl_gerentes(1000)
+cvs.tbl_leitores(1000)
+cvs.tbl_livros(200)

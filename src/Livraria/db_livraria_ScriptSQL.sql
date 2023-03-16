@@ -54,8 +54,8 @@ SHOW TABLE STATUS;
 
 /*Comandos de inserção de dados*/
 INSERT INTO tbl_Gerentes (nome, cpf, rg, senha) VALUES ('', '', '', '');
-INSERT INTO tbl_Livros (nome, autor, genero, editora) VALUES ('', '', '', '');
 INSERT INTO tbl_Leitores (nome, cpf, telefone, cep, numero) VALUES ('', '', '', '', '');
+INSERT INTO tbl_Livros (nome, autor, genero, editora) VALUES ('', '', '', '');
 INSERT INTO tbl_Emprestimos (id_leitor, id_livro, data_emprestimo, data_entrega) VALUES ('', '', '', '');
 
 /*Comandos para consultar todos os dados de uma tabela*/
