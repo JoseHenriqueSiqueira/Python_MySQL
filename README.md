@@ -10,18 +10,9 @@ Este repositório demonstra como conectar o MySQL com o Python de forma segura e
 [Livraria_ScriptSQL](/src/Livraria/db_livraria_ScriptSQL.sql)<br>
 <img src="/images/livraria_sql.png?raw=true">
 
-[Leitores_CSV](/src/Livraria/DadosCSV/Leitores.csv)<br>
-<img src="/images/livraria_leitores_csv.png?raw=true">
-
-[Livros_CSV](/src/Livraria/DadosCSV/Livros.csv)<br>
-<img src="/images/livraria_livros_csv.png?raw=true">
-
 ### DB_COPA2018
 [Copa2018_ScriptSQL](/src/Copa2018/copa2018_ScriptSQL.sql)<br>
 <img src="/images/copa_sql.png">
-
-[Fase_De_Grupos_CSV](/images/copa_csv.png)<br>
-<img src="/images/copa_csv.png?raw=true">
 
 ## Requirements
 [mysql.connector](https://pypi.org/project/mysql-connector-python/)<br>
