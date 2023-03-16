@@ -1,15 +1,27 @@
 # Python_MySQL
- This repository is a collection of Python codes that demonstrate how to connect MySQL to Python using the 'mysql.connector' library. Through the code, it is possible to establish a connection with the database and execute commands such as Select, Insert, and Update. Additionally, the repository includes codes that allow the insertion of data from CSV files into the database, making the process of inserting large volumes of data easier and more efficient. With the complete set of codes, the repository offers a comprehensive solution for dealing with MySQL in Python, whether for simple or complex applications.
+Este repositório demonstra como conectar o MySQL com o Python de forma segura e simples. O exemplo utiliza dois bancos de dados: um simples, referente a Copa do Mundo 2018, e outro mais complexo, referente a uma livraria. O repositório também ensina como obter dados de um arquivo CSV e inseri-los dentro do banco MySQL. Para testar os métodos de insert, update, delete e select, há pastas com arquivos CSV para cada banco. A pasta da Copa do Mundo 2018 contém apenas um arquivo CSV, pois o banco é simples e contém apenas uma tabela. Já a pasta do banco complexo (Livraria) contém vários arquivos CSV, pois o banco possui quatro tabelas. Para testar de forma eficiente o banco Livraria, foi desenvolvido um script que gera dados ilimitados para as tabelas e os converte em uma planilha CSV. Este repositório é útil para quem quer aprender como conectar o MySQL com o Python de forma segura e para quem deseja praticar a inserção e manipulação de dados em bancos de dados MySQL.
 
 ## Images
-<p float="left">
-<p>MySQL Script</p>
-<img src="/images/mysql_script.png?raw=true">
-<p>CSV DATA</p>
-<img src="/images/csv_data.png?raw=true">
-<p>BaseDAO.py</p>
-<img src="/images/base_dao.png?raw=true">
-</p>
+### BaseDAO.py
+[BaseDAO](/src/Base.py)
+<img src="/images/base.png?raw=true">
+
+### DB_LIVRARIA
+[Livraria_ScriptSQL](/src/Livraria/db_livraria_ScriptSQL.sql)
+<img src="/images/livraria_sql.png?raw=true">
+
+[Leitores_CSV](/src/Livraria/DadosCSV/Leitores.csv)
+<img src="/images/livraria_leitores_csv.png?raw=true">
+
+[Livros_CSV](/src/Livraria/DadosCSV/Livros.csv)
+<img src="/images/livraria_livros_csv.png?raw=true">
+
+### DB_COPA2018
+[Copa2018_ScriptSQL](/src/Copa2018/copa2018_ScriptSQL.sql)
+<img src="/images/copa_sql.png">
+
+[Fase_De_Grupos_CSV](/images/copa_csv.png)
+<img src="/images/copa_csv.png?raw=true">
 
 ## Requirements
 [mysql.connector](https://pypi.org/project/mysql-connector-python/)<br>

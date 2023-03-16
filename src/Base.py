@@ -72,3 +72,4 @@ class BaseDAO():
             cursor.close()
             cnx.close()
             return data
+

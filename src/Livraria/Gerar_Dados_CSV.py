@@ -2,22 +2,7 @@ from faker import Faker
 import numpy as np
 import csv
 
-class tbl_Leitores_CSV():
-
-    def __init__(self, quantidade:int) -> None:
-        nomes_aleatorios = self._gerar_nomes_aleatorios(quantidade)
-        cpf_aleatorios = self._gerar_cpfs_aleatorios(quantidade)
-        telefones_aleatorios = self._gerar_telefones_aleatorios(quantidade)
-        ceps_aleatorios = self._gerar_ceps_aleatorios(quantidade)
-        numeros_aleatorios = self._gerar_numeros_aleatorios(quantidade)
-        dados = list()
-        for nome, cpf, telefone, cep, numero in zip(nomes_aleatorios, cpf_aleatorios, telefones_aleatorios, ceps_aleatorios, numeros_aleatorios):
-            dados.append((nome, cpf, telefone, cep, numero))
-        with open('src/Livraria/DadosCSV/Leitores_Dados.csv', 'w', newline='') as file:
-            leitores = csv.writer(file)
-            leitores.writerow(['NOME','CPF','TELEFONE','CEP','NUMERO'])
-            for dado in dados:
-                leitores.writerows([dado])
+class Gerar_Dados():
 
     def _gerar_cpfs_aleatorios(self, quantidade: int = 1) -> list:
         # Cria um set para armazenar os CPFs gerados e garantir que não haja duplicatas
@@ -136,3 +121,76 @@ class tbl_Leitores_CSV():
 
         # Retorna o número aleatório como uma string
         return list(numeros_residenciais)
+
+    def _gerar_livros_aleatorios(self, quantidade: int = 1) -> list:
+        # Cria um conjunto vazio para armazenar os numeros residenciais gerados
+        livros = set()
+        # Cria um array com os dígitos de 0 a 9 para serem usados na geração dos numeros residenciais
+        digitos_base = np.arange(10)
+        # Repete o processo de geração de números residenciais até atingir a quantidade desejada
+        while len(livros) < quantidade:
+            n = np.random.randint(2, 5)
+            # Embaralha os dígitos e seleciona os primeiros 2 para serem usados no número residencial
+            np.random.shuffle(digitos_base)
+            digitos = digitos_base[:n]
+            # Transforma a array em uma string
+            numeros_string = ''.join(map(str, digitos))
+            # Adiciona ao Conjunto
+            livros.add(numeros_string)
+        livros = ['Livro_' + livro for livro in livros]
+        # Retorna o número aleatório como uma string
+        return list(livros)
+
+    def _gerar_generos_aleatorios(self, quantidade: int = 1) -> list:
+        generos = [
+                    'Ficção Científica', 'Romance', 'Mistério', 'Aventura', 'História', 
+                    'Fantasia', 'Terror', 'Suspense', 'Policial', 'Drama', 
+                    'Comédia', 'Ação', 'Infantil', 'Autoajuda', 'Didático', 
+                    'Biografia', 'Ensaio', 'Religião', 'Esporte', 'Gastronomia'
+                    ]
+        generos_lista = list()
+        generos_lista = np.random.choice(generos, size=quantidade, replace=True)
+        return generos_lista
+    
+    def _gerar_editoras_aleatorias(self, quantidade:int = 1) -> list:
+        # gera uma array com números aleatórios de 10 a 99
+        numeros_aleatorios = np.random.randint(10, 100, size=quantidade)
+        # concatena cada número com a string "Editora_"
+        editoras_aleatorias = ["Editora_" + str(num) for num in numeros_aleatorios]
+        return editoras_aleatorias
+
+class Gerar_CSV(Gerar_Dados):
+
+    def tbl_leitores(self, quantidade:int = 1) -> None:
+        nomes_aleatorios = self._gerar_nomes_aleatorios(quantidade)
+        cpf_aleatorios = self._gerar_cpfs_aleatorios(quantidade)
+        telefones_aleatorios = self._gerar_telefones_aleatorios(quantidade)
+        ceps_aleatorios = self._gerar_ceps_aleatorios(quantidade)
+        numeros_aleatorios = self._gerar_numeros_aleatorios(quantidade)
+        dados = list()
+        for nome, cpf, telefone, cep, numero in zip(nomes_aleatorios, cpf_aleatorios, telefones_aleatorios, ceps_aleatorios, numeros_aleatorios):
+            dados.append((nome, cpf, telefone, cep, numero))
+        with open('src/Livraria/DadosCSV/Leitores.csv', 'w', newline='') as file:
+            leitores = csv.writer(file)
+            leitores.writerow(['NOME','CPF','TELEFONE','CEP','NUMERO'])
+            for dado in dados:
+                leitores.writerows([dado])
+
+    def tbl_livros(self, quantidade:int = 1) -> None:
+        nomes_aleatorios = self._gerar_nomes_aleatorios(quantidade)
+        livros_aleatorios = self._gerar_livros_aleatorios(quantidade)
+        generos_aleatorios = self._gerar_generos_aleatorios(quantidade)
+        editoras_aleatorias = self._gerar_editoras_aleatorias(quantidade)
+        dados = list()
+        for autor, nome, genero, editora in zip(nomes_aleatorios, livros_aleatorios, generos_aleatorios, editoras_aleatorias):
+            dados.append((nome, autor, genero, editora))
+        with open('src/Livraria/DadosCSV/Livros.csv', 'w', newline='', encoding='utf-8') as file:
+            leitores = csv.writer(file)
+            leitores.writerow(['NOME','AUTOR','GENERO','EDITORA'])
+            for dado in dados:
+                leitores.writerows([dado])
+
+if __name__ == "__main__":
+    csv = Gerar_CSV()
+    csv.tbl_leitores(1000)
+    csv.tbl_livros(500)

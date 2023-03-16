@@ -1,8 +1,11 @@
+/*Criando o banco de dados*/
 CREATE DATABASE db_livraria;
 
+/*Utilizando o banco de dados criado*/
 USE db_livraria;
 
-CREATE TABLE tbl_Gerente
+/*Criando a tabela de gerentes*/
+CREATE TABLE tbl_Gerentes
 (
 	id_gerente INT AUTO_INCREMENT UNIQUE NOT NULL PRIMARY KEY,
 	nome VARCHAR (50) NOT NULL,
@@ -11,6 +14,7 @@ CREATE TABLE tbl_Gerente
 	senha VARCHAR (20) NOT NULL
 ) ENGINE = InnoDB;
 
+/*Criando a tabela de leitores*/
 CREATE TABLE tbl_Leitores
 (
 	id_leitor INT AUTO_INCREMENT UNIQUE NOT NULL PRIMARY KEY,
@@ -21,6 +25,7 @@ CREATE TABLE tbl_Leitores
 	numero INT NOT NULL
 ) ENGINE = InnoDB;
 
+/*Criando a tabela de livros*/
 CREATE TABLE tbl_Livros
 (
 	id_livro INT AUTO_INCREMENT UNIQUE NOT NULL PRIMARY KEY,
@@ -30,7 +35,8 @@ CREATE TABLE tbl_Livros
 	editora VARCHAR (20) NOT NULL
 ) ENGINE = InnoDB;
 
-CREATE TABLE tbl_emprestimo
+/*Criando a tabela de emprestimo*/
+CREATE TABLE tbl_Emprestimos
 (
 	id_emprestimo INT AUTO_INCREMENT UNIQUE NOT NULL PRIMARY KEY,
 	id_leitor INT UNIQUE NOT NULL,
@@ -41,20 +47,28 @@ CREATE TABLE tbl_emprestimo
 	FOREIGN KEY (id_livro) REFERENCES tbl_livros(id_livro)
 ) ENGINE = InnoDB;
 
+# COMANDO PARA DEBUG E TESTES #
+
+/*Comando para mostrar informações sobre as tabelas*/
 SHOW TABLE STATUS;
 
+/*Comandos de inserção de dados*/
+INSERT INTO tbl_Gerentes (nome, cpf, rg, senha) VALUES ('', '', '', '');
 INSERT INTO tbl_Livros (nome, autor, genero, editora) VALUES ('', '', '', '');
+INSERT INTO tbl_Leitores (nome, cpf, telefone, cep, numero) VALUES ('', '', '', '', '');
+INSERT INTO tbl_Emprestimos (id_leitor, id_livro, data_emprestimo, data_entrega) VALUES ('', '', '', '');
+
+/*Comandos para consultar todos os dados de uma tabela*/
+SELECT * FROM tbl_Gerentes;
+SELECT * FROM tbl_Leitores;
 SELECT * FROM tbl_Livros;
+SELECT * FROM tbl_Emprestimos;
 
-INSERT INTO tbl_Leitores (nome, cpf, telefone, cep, numero) VALUES ('', '', '', '','');
+/*Comando para remover todas as tabelas do banco de dados*/
+DROP TABLES tbl_Emprestimos, tbl_Gerentes, tbl_Leitores, tbl_Livros;
 
-SELECT * FROM tbl_Leitores LIMIT 5000;
-
-INSERT INTO tbl_emprestimo (id_leitor, id_livro) VALUES ('1', '1');
-
-SELECT * FROM tbl_emprestimo;
-
-SELECT tbl_Leitores.nome, tbl_Leitores.cpf, tbl_Livros.nome_livro FROM tbl_emprestimo 
+/*Consulta personalizada da tabela emprestimo*/
+SELECT tbl_Leitores.nome, tbl_Leitores.cpf, tbl_Livros.nome, tbl_Livros.genero FROM tbl_emprestimo 
 JOIN tbl_Leitores ON tbl_emprestimo.id_leitor = tbl_Leitores.id_leitor
-JOIN tbl_Livros ON tbl_emprestimo.id_livro = tbl_Livros.id_livros
-WHERE tbl_emprestimo.id_emprestimo = '1';
+JOIN tbl_Livros ON tbl_emprestimo.id_livro = tbl_Livros.id_livro
+WHERE tbl_emprestimo.id_emprestimo = '';

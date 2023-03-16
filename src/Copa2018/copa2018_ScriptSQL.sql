@@ -1,8 +1,8 @@
 /* Criando o banco de dados*/
-CREATE DATABASE copa2018;
+CREATE DATABASE db_copa2018;
 
 /* Usando o banco de dados criado para DML*/
-USE copa2018;
+USE db_copa2018;
 
 /* Criando a tabela para armazenar os dados do arquivo csv*/
 CREATE TABLE fase_de_grupos (
