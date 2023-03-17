@@ -226,6 +226,6 @@ class Gerar_CSV(Gerar_Dados):
 
 
 cvs = Gerar_CSV()
-cvs.tbl_gerentes(1000)
-cvs.tbl_leitores(1000)
-cvs.tbl_livros(200)
+cvs.tbl_gerentes(500)
+cvs.tbl_leitores(500)
+cvs.tbl_livros(100)
