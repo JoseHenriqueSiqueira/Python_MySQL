@@ -9,16 +9,11 @@ Este repositório demonstra como conectar o MySQL com o Python de forma segura e
 [PyQt6](https://pypi.org/project/PyQt6/)<br>
 
 ## Licenses
-[Python](/LICENSES/Python_LICENSE)<br>
-**License:** Python Software Foundation License<br>
-[mysql.connector](/LICENSES/mysql.connector_LICENSE)<br>
-**License:** GNU General Public License (GPL) (GNU GPLv2 (with FOSS License Exception))<br>
-[numpy](/LICENSES/numpy_LICENSE)<br>
-**License:** BSD License (BSD-3-Clause)<br>
-[faker](/LICENSES/faker_LICENSE)<br>
-**License:** MIT License<br>
-[PyQt6](/LICENSES/PyQt6_LICENSE)<br>
-**License:** GPL v3
+[Python](/LICENSES/Python_LICENSE) Python Software Foundation License<br>
+[mysql.connector](/LICENSES/mysql.connector_LICENSE) GNU General Public License (GPL) (GNU GPLv2 (with FOSS License Exception))<br>
+[numpy](/LICENSES/numpy_LICENSE) BSD License (BSD-3-Clause)<br>
+[faker](/LICENSES/faker_LICENSE) MIT License<br>
+[PyQt6](/LICENSES/PyQt6_LICENSE) GPL v3
 
 ## Built With
 [Python 3.11.X](https://www.python.org/)<br>
