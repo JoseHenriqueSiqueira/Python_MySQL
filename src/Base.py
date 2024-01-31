@@ -1,6 +1,6 @@
 import mysql.connector
 from mysql.connector import errorcode
-from config import HOST, USER, PASSWORD, DBNAME
+from env import DataBase
 
 class BaseDAO():
 
@@ -12,7 +12,7 @@ class BaseDAO():
         '''
         try:
             # Establishes a connection with the database
-            return mysql.connector.connect(host = HOST, user = USER, password = PASSWORD, database = DBNAME)
+            return mysql.connector.connect(host = DataBase.HOST, user = DataBase.USER, password = DataBase.PASSWORD, database = DataBase.DBNAME)
         except mysql.connector.Error as err:
             # Handles possible errors that may occur while connecting to the database
             if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
@@ -59,7 +59,9 @@ class BaseDAO():
         cursor = cnx.cursor()
         try:
             # If there is only one parameter, it needs to be passed as a tuple.
-            if len(params) == 1:
+            if params == None:
+                cursor.execute(sql)
+            elif len(params) == 1:
                 cursor.execute(sql, (params[0],))
             else:
                 for param in params:

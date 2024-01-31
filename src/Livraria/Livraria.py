@@ -41,7 +41,7 @@ class tbl_Gerentes(BaseDAO):
         self._params_type('insert_values', {'data': data})
         for value in data:
             # Calling the parent method _execDML to execute the SQL stament and insert the data into the database
-            super()._execDML('INSERT INTO tbl_Gerentes (nome, cpf, rg, senha) VALUES ( %s, %s, %s, %s)', value)
+            super()._execDML('INSERT INTO gerentes (nome, cpf, rg, senha) VALUES (%s, %s, %s, %s)', value)
 
     def update_values(self, by:str, params:list) -> None:
         '''
@@ -245,14 +245,14 @@ if __name__ == "__main__":
     gerentes_data = gerentes.get_cvs_data()
     gerentes.insert_values(gerentes_data)
 
-    print("Inserindo Leitores...")
-    leitores = tbl_Leitores()
-    leitores_data = leitores.get_cvs_data()
-    leitores.insert_values(leitores_data)
+    # print("Inserindo Leitores...")
+    # leitores = tbl_Leitores()
+    # leitores_data = leitores.get_cvs_data()
+    # leitores.insert_values(leitores_data)
 
-    print("Inserindo Livros...")
-    livros = tbl_Livros()
-    livros_data = livros.get_cvs_data()
-    livros.insert_values(livros_data)
+    # print("Inserindo Livros...")
+    # livros = tbl_Livros()
+    # livros_data = livros.get_cvs_data()
+    # livros.insert_values(livros_data)
 
     print("FIM")
